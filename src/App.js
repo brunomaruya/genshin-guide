@@ -19,7 +19,7 @@ function App() {
   if (error) return error;
 
   return (
-    <div>
+    <div className="bg-background min-h-screen px-10 py-8">
       <Search />
     </div>
   );
