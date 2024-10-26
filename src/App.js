@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { getCharacterNames } from "./services/characterServices";
 import { fetchData } from "./utils/fetchData";
 import Search from "./components/Search";
+import CharacterCard from "./components/CharacterCard";
+import { renderLoadingOrError } from "./services/renderLoadingOrError";
 
 function App() {
   const [characterNames, setCharacterNames] = useState([]);
@@ -14,13 +16,16 @@ function App() {
     fetchData(getCharacterNames, setLoading, setCharacterNames, setError);
   }, []);
 
-  if (loading) return "Loading...";
-
-  if (error) return error;
+  renderLoadingOrError(loading, error);
 
   return (
     <div className="bg-background min-h-screen px-10 py-8">
       <Search />
+      <div className="grid grid-cols-4 gap-4 mt-5">
+        {characterNames.map((name) => (
+          <CharacterCard key={name} name={name} />
+        ))}
+      </div>
     </div>
   );
 }

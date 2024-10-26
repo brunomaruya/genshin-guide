@@ -12,7 +12,6 @@ export const getCharacterNames = async () => {
 export const getCharacter = async (name) => {
   try {
     const response = await api.get(`/characters/${name}`);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error(error);
