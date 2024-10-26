@@ -3,6 +3,7 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import { getCharacterNames } from "./services/characterServices";
 import { fetchData } from "./utils/fetchData";
+import Search from "./components/Search";
 
 function App() {
   const [characterNames, setCharacterNames] = useState([]);
@@ -19,9 +20,7 @@ function App() {
 
   return (
     <div>
-      {characterNames.map((character, index) => (
-        <div key={index}>{character}</div> // Ajuste com base na estrutura dos dados
-      ))}
+      <Search />
     </div>
   );
 }
