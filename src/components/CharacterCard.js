@@ -40,7 +40,7 @@ export default function CharacterCard({ name }) {
           <img
             src={card}
             alt={character?.name}
-            className="transform scale-125 translate-y-6 max-h-52 w-full object-cover object-center"
+            className="transform scale-125 translate-y-7 max-h-60 w-full object-cover object-center transition-all duration-300 hover:scale-150 cursor-pointer"
           />
         </div>
         <div className="text-white text-center  mt-2">{character?.name}</div>
