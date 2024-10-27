@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { fetchData } from "../utils/fetchData";
 import { getCharacter } from "../services/characterServices";
 import { renderLoadingOrError } from "../services/renderLoadingOrError";
+import clorinde from "../assets/images/clorinde";
+import sethos from "../assets/images/sethos";
+import sigewinne from "../assets/images/sigewinne";
 
 export default function CharacterCard({ name }) {
   const [character, setCharacter] = useState();
@@ -15,7 +18,21 @@ export default function CharacterCard({ name }) {
     fetchData(() => getCharacter(name), setLoading, setCharacter, setError);
   }, []);
   renderLoadingOrError(loading, error);
+  let card;
 
+  switch (name) {
+    case "clorinde":
+      card = clorinde;
+      break;
+    case "sethos":
+      card = sethos;
+      break;
+    case "sigewinne":
+      card = sigewinne;
+      break;
+    default:
+      card = `https://genshin.jmp.blue/characters/${name}/card`;
+  }
   if (character)
     return (
       <div className=" rounded-3xl h-fit  object-cover overflow-hidden bg-black p-2 relative">
@@ -25,11 +42,7 @@ export default function CharacterCard({ name }) {
           } rounded-2xl flex justify-center overflow-hidden`}
         >
           <img
-            src={`https://genshin.jmp.blue/characters/${name}/card`}
-            //card  3
-            //gacha-card > 10
-            //gacha-splash > 10
-            //portrait 3
+            src={card}
             alt={character?.name}
             className="transform scale-125 max-h-52"
           />
