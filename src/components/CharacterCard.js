@@ -5,6 +5,7 @@ import { renderLoadingOrError } from "../services/renderLoadingOrError";
 import clorinde from "../assets/images/clorinde.webp";
 import sethos from "../assets/images/sethos.webp";
 import sigewinne from "../assets/images/sigewinne.webp";
+import { Link } from "react-router-dom";
 
 export default function CharacterCard({ name }) {
   const [character, setCharacter] = useState();
@@ -51,26 +52,28 @@ export default function CharacterCard({ name }) {
   if (character)
     return (
       <div className=" rounded-3xl h-fit  object-cover overflow-hidden bg-black p-2 relative">
-        <div className={`rounded-2xl flex justify-center overflow-hidden`}>
-          {!isLoaded ? (
-            <div className="bg-gray-200 h-60 w-full animate-pulse"></div>
-          ) : (
+        <Link to={`/characters/${name}`}>
+          <div className={`rounded-2xl flex justify-center overflow-hidden`}>
+            {!isLoaded ? (
+              <div className="bg-gray-200 h-60 w-full animate-pulse"></div>
+            ) : (
+              <img
+                loading="lazy"
+                src={card}
+                alt={character?.name}
+                className="transform scale-125 translate-y-7 max-h-60 w-full object-cover object-center transition-all duration-300 hover:scale-150 cursor-pointer"
+              />
+            )}
+          </div>
+          <div className="text-white text-center  mt-2">{character?.name}</div>
+          <div className="bg-black w-8 h-8 rounded-full flex justify-center items-center absolute top-0 right-0">
             <img
               loading="lazy"
-              src={card}
-              alt={character?.name}
-              className="transform scale-125 translate-y-7 max-h-60 w-full object-cover object-center transition-all duration-300 hover:scale-150 cursor-pointer"
+              src={`https://genshin.jmp.blue/elements/${character?.vision.toLowerCase()}/icon`}
+              alt={character?.element}
             />
-          )}
-        </div>
-        <div className="text-white text-center  mt-2">{character?.name}</div>
-        <div className="bg-black w-8 h-8 rounded-full flex justify-center items-center absolute top-0 right-0">
-          <img
-            loading="lazy"
-            src={`https://genshin.jmp.blue/elements/${character?.vision.toLowerCase()}/icon`}
-            alt={character?.element}
-          />
-        </div>
+          </div>
+        </Link>
       </div>
     );
 }
