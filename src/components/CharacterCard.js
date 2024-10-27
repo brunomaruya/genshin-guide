@@ -25,12 +25,15 @@ export default function CharacterCard({ name }) {
           } rounded-2xl flex justify-center overflow-hidden`}
         >
           <img
-            src={`https://genshin.jmp.blue/characters/${name}/icon`}
+            src={`https://genshin.jmp.blue/characters/${name}/card`}
+            //card  3
+            //gacha-card > 10
+            //gacha-splash > 10
+            //portrait 3
             alt={character?.name}
-            className="transform scale-125"
+            className="transform scale-125 max-h-52"
           />
         </div>
-
         <div className="text-white text-center  mt-2">{character?.name}</div>
         <div className="bg-black w-8 h-8 rounded-full flex justify-center items-center absolute top-0 right-0">
           <img
