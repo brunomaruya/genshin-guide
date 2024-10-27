@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { fetchData } from "../utils/fetchData";
 import { getCharacter } from "../services/characterServices";
 import { renderLoadingOrError } from "../services/renderLoadingOrError";
-import clorinde from "../assets/images/clorinde";
-import sethos from "../assets/images/sethos";
-import sigewinne from "../assets/images/sigewinne";
+import clorinde from "../assets/images/clorinde.webp";
+import sethos from "../assets/images/sethos.webp";
+import sigewinne from "../assets/images/sigewinne.webp";
 
 export default function CharacterCard({ name }) {
   const [character, setCharacter] = useState();
@@ -36,15 +36,11 @@ export default function CharacterCard({ name }) {
   if (character)
     return (
       <div className=" rounded-3xl h-fit  object-cover overflow-hidden bg-black p-2 relative">
-        <div
-          className={`${
-            character?.rarity === 5 ? goldBg : purpleBg
-          } rounded-2xl flex justify-center overflow-hidden`}
-        >
+        <div className={`rounded-2xl flex justify-center overflow-hidden`}>
           <img
             src={card}
             alt={character?.name}
-            className="transform scale-125 max-h-52"
+            className="transform scale-125 translate-y-6 max-h-52 w-full object-cover object-center"
           />
         </div>
         <div className="text-white text-center  mt-2">{character?.name}</div>

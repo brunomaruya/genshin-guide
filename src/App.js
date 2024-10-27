@@ -19,12 +19,14 @@ function App() {
   renderLoadingOrError(loading, error);
 
   return (
-    <div className="bg-background min-h-screen px-10 py-8">
-      <Search />
-      <div className="grid grid-cols-4 gap-4 mt-5">
-        {characterNames.map((name) => (
-          <CharacterCard key={name} name={name} />
-        ))}
+    <div className="bg-background min-h-screen w-full px-10 py-8">
+      <div className="container  mx-auto max-w-6xl">
+        <Search />
+        <div className="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4 mt-5">
+          {characterNames.map((name) => (
+            <CharacterCard key={name} name={name} />
+          ))}
+        </div>
       </div>
     </div>
   );
