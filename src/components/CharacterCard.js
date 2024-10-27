@@ -11,41 +11,62 @@ export default function CharacterCard({ name }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const [card, setCard] = useState("");
+  const [isLoaded, setIsLoaded] = useState(false);
+
   const goldBg = "bg-[#A27D57]";
   const purpleBg = "bg-[#A07BB5]";
 
   useEffect(() => {
     fetchData(() => getCharacter(name), setLoading, setCharacter, setError);
   }, []);
-  renderLoadingOrError(loading, error);
-  let card;
 
-  switch (name) {
-    case "clorinde":
-      card = clorinde;
-      break;
-    case "sethos":
-      card = sethos;
-      break;
-    case "sigewinne":
-      card = sigewinne;
-      break;
-    default:
-      card = `https://genshin.jmp.blue/characters/${name}/card`;
-  }
+  useEffect(() => {
+    let cardUrl;
+
+    switch (name) {
+      case "clorinde":
+        cardUrl = clorinde;
+        break;
+      case "sethos":
+        cardUrl = sethos;
+        break;
+      case "sigewinne":
+        cardUrl = sigewinne;
+        break;
+      default:
+        cardUrl = `https://genshin.jmp.blue/characters/${name}/card`;
+    }
+
+    const img = new Image();
+    img.src = cardUrl;
+    img.onload = () => {
+      setCard(cardUrl);
+      setIsLoaded(true);
+    };
+  }, [name]);
+
+  renderLoadingOrError(loading, error);
+
   if (character)
     return (
       <div className=" rounded-3xl h-fit  object-cover overflow-hidden bg-black p-2 relative">
         <div className={`rounded-2xl flex justify-center overflow-hidden`}>
-          <img
-            src={card}
-            alt={character?.name}
-            className="transform scale-125 translate-y-7 max-h-60 w-full object-cover object-center transition-all duration-300 hover:scale-150 cursor-pointer"
-          />
+          {!isLoaded ? (
+            <div className="bg-gray-200 h-60 w-full animate-pulse"></div>
+          ) : (
+            <img
+              loading="lazy"
+              src={card}
+              alt={character?.name}
+              className="transform scale-125 translate-y-7 max-h-60 w-full object-cover object-center transition-all duration-300 hover:scale-150 cursor-pointer"
+            />
+          )}
         </div>
         <div className="text-white text-center  mt-2">{character?.name}</div>
         <div className="bg-black w-8 h-8 rounded-full flex justify-center items-center absolute top-0 right-0">
           <img
+            loading="lazy"
             src={`https://genshin.jmp.blue/elements/${character?.vision.toLowerCase()}/icon`}
             alt={character?.element}
           />
