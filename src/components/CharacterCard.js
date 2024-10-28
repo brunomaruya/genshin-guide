@@ -55,13 +55,13 @@ export default function CharacterCard({ name }) {
         <Link to={`/characters/${name}`}>
           <div className={`rounded-2xl flex justify-center overflow-hidden`}>
             {!isLoaded ? (
-              <div className="bg-gray-200 h-60 w-full animate-pulse"></div>
+              <div className="bg-gray-200 h-52 w-full animate-pulse"></div>
             ) : (
               <img
                 loading="lazy"
                 src={card}
                 alt={character?.name}
-                className="transform scale-125 translate-y-7 max-h-60 w-full object-cover object-center transition-all duration-300 hover:scale-150 cursor-pointer"
+                className="transform scale-125 translate-y-7 max-h-52 w-full object-cover object-center transition-all duration-300 hover:scale-150 cursor-pointer"
               />
             )}
           </div>
