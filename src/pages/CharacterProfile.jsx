@@ -16,7 +16,7 @@ export default function CharacterProfile() {
 
   if (!character) return null;
 
-  const Vision = () => {
+  const VisionImg = () => {
     return (
       <img
         className="inline h-10 w-10"
@@ -24,6 +24,7 @@ export default function CharacterProfile() {
       />
     );
   };
+  console.log(character.nation.toLowerCase());
 
   return (
     <main className="w-full min-h-screen pt-1 text-white bg-[#2D3037] overflow-hidden relative">
@@ -35,7 +36,7 @@ export default function CharacterProfile() {
           <div className="text-sm text-gray-400">Name</div>
           <div className="text-xl">
             {character.name}
-            {Vision()}
+            {VisionImg()}
           </div>
           <div className="text-sm text-gray-400">Nation</div>
           <div className="text-xl">{character.nation}</div>
@@ -46,7 +47,7 @@ export default function CharacterProfile() {
         </div>
 
         <img
-          className="mt-[-150px] max-w-[350px] ml-10 absolute right-[-100px]"
+          className="mt-[-150px] max-w-[350px] max-h-[350px] ml-10 absolute right-0"
           src={`https://genshin.jmp.blue/characters/${id}/portrait`}
         />
       </div>
