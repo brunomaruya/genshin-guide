@@ -38,10 +38,8 @@ export default function CharacterCard({ name }) {
     setCard(cardUrl);
   }, [name]);
 
-  renderLoadingOrError(loading, error);
-
   if (!card) return null;
-  console.log(typeof card);
+
   return (
     <div className=" rounded-3xl h-fit  object-cover overflow-hidden bg-black p-2 relative">
       <Link to={`/characters/${name}`}>

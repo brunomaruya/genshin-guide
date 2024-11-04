@@ -12,6 +12,7 @@ export default function CharacterProfile() {
   useEffect(() => {
     fetchData(() => getCharacter(id), setLoading, setCharacter, setError);
   }, []);
+
   renderLoadingOrError(loading, error);
 
   if (!character) return null;
